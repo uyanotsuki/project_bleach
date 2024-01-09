@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Bleach = require("../models/bleach").Bleach;
 const async = require("async");
+var checkAuth = require("./../middleware/checkAuth.js");
 
-router.get('/:nick', async (req, res, next) => {
+router.get('/:nick', checkAuth, async function(req, res, next) {
   try {
     const [bleach, shinigami] = await Promise.all([
       Bleach.findOne({nick: req.params.nick}),
