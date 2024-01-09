@@ -3,21 +3,19 @@ const router = express.Router();
 const Bleach = require("../models/bleach").Bleach;
 const User = require("../models/user").User;
 
-/* GET login/registration page. */
-router.get('/logreg', function(req, res, next) {
-  res.render('logreg',{title: 'Вход'});
-});
-
 /* GET home page. */
 router.get('/', async (req, res, next) => {
   try {
-    const menu = await Bleach.find({}, { _id: 0, title: 1, nick: 1 });
-    req.session.greeting = "Hi!!!";
-    res.render('index', { title: 'Bleach', menu: menu, counter:req.session.counter });
+    res.render('index', { title: 'Bleach', counter:req.session.counter });
   } 
   catch (err) {
     next(err);
   }
+});
+
+/* GET login/registration page. */
+router.get('/logreg', async function(req, res, next) {
+  res.render('logreg', { title: 'Вход',error:null}); 
 });
 
 /* POST login/registration page. */

@@ -30,6 +30,10 @@
           <input class="btn btn-primary" type="submit" value="Войти" />
         </div>
       </div>
+
+      <% if(error) { %>
+        <div class="alert alert-danger"><%= error %></div>
+      <% } %>
     </form>
   <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
     <div class="row gx-lg-5 align-items-center mb-5">
