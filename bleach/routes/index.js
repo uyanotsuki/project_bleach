@@ -5,7 +5,7 @@ const User = require("../models/user").User;
 
 /* GET login/registration page. */
 router.get('/logreg', function(req, res, next) {
-  res.render('logreg',{title: 'Log In'});
+  res.render('logreg',{title: 'Вход'});
 });
 
 /* GET home page. */
@@ -32,7 +32,7 @@ router.post('/logreg', async function(req, res, next) {
               req.session.user = user._id;
               res.redirect('/');
           } else {
-              res.render('logreg', { title: 'Log In', error: 'Неверный пароль' });
+              res.render('logreg', { title: 'Вход', error: 'Неверный пароль' });
           }
       } else {
           const newUser = new User({ username, password });
@@ -47,7 +47,7 @@ router.post('/logreg', async function(req, res, next) {
 
 router.get('/logreg', function(req, res, next) {
   res.render('logreg',{error:null});
-  });
+});
    
 module.exports = router;
 

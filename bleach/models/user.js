@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
 var crypto = require("crypto");
 
 const userSchema = new mongoose.Schema({
@@ -40,5 +40,3 @@ return this.encryptPassword(password) === this.hashedPassword
 }
 
 module.exports.User = mongoose.model("User", userSchema);
-
-    
