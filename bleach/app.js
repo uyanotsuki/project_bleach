@@ -29,8 +29,7 @@ var MongoStore = require('connect-mongo');
 app.use(session({
   secret: "Bleach",       //для подписи и шифрования данных сессии
   cookie: {               //максимальное время жизни куки сессии
-    maxAge: 60 * 1000,    
-    httpOnly: false,      
+    maxAge: 60 * 1000,        
   },
   resave: true,             //сессия будет пересохраняться даже при каждом запросе
   saveUninitialized: true,   //сессии будут сохраняться даже тогда, когда они не были явно изменены
@@ -39,8 +38,9 @@ app.use(session({
 app.use(function(req,res,next){
   req.session.counter = req.session.counter +1 || 1
   next()
-})
-app.use(require("./middleware/createMenu.js")) //подключение глобальной переменной для массива ссылок меню 
+});
+app.use(require("./middleware/createMenu.js")); //подключение глобальной переменной для массива ссылок меню 
+app.use(require("./middleware/createUser.js"));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
