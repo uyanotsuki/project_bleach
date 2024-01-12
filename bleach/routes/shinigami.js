@@ -3,9 +3,9 @@ const router = express.Router();
 var db = require('../mySQLConnect.js');
 // const Bleach = require("../models/bleach").Bleach;
 const async = require("async");
-// var checkAuth = require("./../middleware/checkAuth.js");
+var checkAuth = require("./../middleware/checkAuth.js");
 
-router.get("/:nick", function(req, res, next) {
+router.get("/:nick", checkAuth, function(req, res, next) {
   db.query(`SELECT * FROM bleaches WHERE bleaches.nick = '${req.params.nick}'`, (err, bleaches) => {
   if(err) {
     console.log(err);
